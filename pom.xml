@@ -10,6 +10,7 @@
 	<build>
 		<plugins>
 			<plugin>
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>3.8.1</version>
 				<configuration>
@@ -18,8 +19,9 @@
 				</configuration>
 			</plugin>
 			<plugin>
+				<!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-war-plugin -->
 				<artifactId>maven-war-plugin</artifactId>
-				<version>3.2.2</version>
+				<version>3.3.2</version>
 			</plugin>
 		</plugins>
 	</build>

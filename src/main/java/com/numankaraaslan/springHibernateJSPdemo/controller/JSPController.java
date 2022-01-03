@@ -13,6 +13,8 @@ import lombok.AllArgsConstructor;
 
 @Controller
 @AllArgsConstructor
+// EnableWebMvc not required because spring-webmvc is in the dependencies, not just spring-web
+// @EnableWebMvc
 public class JSPController
 {
 	private BookService bookService;

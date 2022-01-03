@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.DependsOn;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
@@ -21,10 +22,13 @@ import org.springframework.web.servlet.view.UrlBasedViewResolver;
 @EnableTransactionManagement
 public class BeanFactory
 {
+	// All these can be defined in defaultservlet-servlet file
+	// tx:annotation-driven and bean definitions ...etc.
+
 	@Bean
 	public ViewResolver viewResolver()
 	{
-		// If i return "wellcome" as modelandview object, it will look for /jsp/wellcome.jsp inside the webapp folder
+		// If i return "wellcome" as modelandview object, the resolver will look for /jsp/wellcome.jsp inside the webapp folder
 		UrlBasedViewResolver resolver = new UrlBasedViewResolver();
 		resolver.setPrefix("/jsp/");
 		resolver.setSuffix(".jsp");
@@ -65,6 +69,7 @@ public class BeanFactory
 	// }
 
 	@Bean(name = "datasource")
+	@Profile(value = "default")
 	public DataSource dataSource()
 	{
 		DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -83,20 +88,13 @@ public class BeanFactory
 		return hibernateProperties;
 	}
 
-	@Bean(name = "txManager")
-	@DependsOn(value =
-	{ "datasource", "sessionFactory" })
-	public HibernateTransactionManager getManager(@Autowired @Qualifier(value = "datasource") DataSource ds, @Autowired @Qualifier(value = "sessionFactory") LocalSessionFactoryBean sf)
-	{
-		return new HibernateTransactionManager(sf.getObject());
-	}
-
 	@Bean(name = "sessionFactory")
 	@DependsOn(value = "datasource")
 	public LocalSessionFactoryBean sessionFactory(@Autowired @Qualifier(value = "datasource") DataSource ds)
 	{
 		LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
 		sessionFactory.setDataSource(ds);
+		// where are the model (@entity) classes
 		sessionFactory.setPackagesToScan("com.numankaraaslan.springHibernateJSPdemo.model");
 		sessionFactory.setHibernateProperties(hibernateProperties());
 		// you can set configurations manually like
@@ -104,5 +102,13 @@ public class BeanFactory
 		// OR from custom "/com/numankaraaslan/springjspdemo/persistence/hibernate.cfg.xml" like
 		// SessionFactory SF = new org.hibernate.cfg.Configuration().configure("/com/numankaraaslan/springjspdemo/persistence/hibernate.cfg.xml").buildSessionFactory();
 		return sessionFactory;
+	}
+
+	@Bean(name = "txManager")
+	@DependsOn(value =
+	{ "datasource", "sessionFactory" })
+	public HibernateTransactionManager getManager(@Autowired @Qualifier(value = "datasource") DataSource ds, @Autowired @Qualifier(value = "sessionFactory") LocalSessionFactoryBean sf)
+	{
+		return new HibernateTransactionManager(sf.getObject());
 	}
 }
