@@ -1,2 +1,3 @@
 # springHibernateJSPdemo
-A sample bootstrap project for spring framework and hibernate and JSP
+
+A sample and up-to-date bootstrap project using Spring Framework and Hibernate and JSP
