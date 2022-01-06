@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<!-- I am using spring forms here, they can hold an object and pass it to servlet and to mappings in the controller classes -->
 <!DOCTYPE html>
 <html>
 <head>

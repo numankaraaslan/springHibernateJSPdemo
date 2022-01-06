@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.JstlView;
 import org.springframework.web.servlet.view.UrlBasedViewResolver;
 
 @Configuration
+// this is tx:annotation-driven
 @EnableTransactionManagement
 public class BeanFactory
 {

@@ -50,7 +50,7 @@
 		</dependency>
 		<!-- javax.servlet-api is not necessary, i have added this to prevent
 		jsp files showing errors "javax.servlet is not found in classpath"
-		it is basically implemented in the spring web but project doesn't realize that '-->
+		it is basically implemented in the spring web but project doesn't realize that -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>

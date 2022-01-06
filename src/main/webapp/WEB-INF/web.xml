@@ -10,6 +10,8 @@
 		<servlet-name>defaultservlet</servlet-name>
 		<!-- DON'T change it to (/*) -->
 		<!-- otherwise it will keep looking for get or post mapping urls in your controllers instead of returning the jsp pages -->
+		<!-- Also, all my JSP files are in the same folder, so all i need is one / url mapping here -->
+		<!-- otherwise you would need different patterns like /book /user /shop ..etc -->
 		<url-pattern>/</url-pattern>
 	</servlet-mapping>
 </web-app>	

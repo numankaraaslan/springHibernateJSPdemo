@@ -5,7 +5,6 @@ import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.numankaraaslan.springHibernateJSPdemo.model.Book;
 
@@ -17,7 +16,8 @@ public class BookRepo
 {
 	private SessionFactory sessionFactory;
 
-	@Transactional
+	@org.springframework.transaction.annotation.Transactional
+	// NOT @javax.transaction.Transactional
 	public void save(Book newBook)
 	{
 		Session session = sessionFactory.openSession();
@@ -25,7 +25,7 @@ public class BookRepo
 		session.close();
 	}
 
-	@Transactional
+	@org.springframework.transaction.annotation.Transactional
 	public List<Book> getBooks()
 	{
 		// let the spring handle the transaction
