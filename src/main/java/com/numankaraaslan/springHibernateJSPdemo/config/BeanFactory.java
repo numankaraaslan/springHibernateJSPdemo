@@ -77,7 +77,8 @@ public class BeanFactory
 		dataSource.setDriverClassName("org.postgresql.Driver");
 		dataSource.setUrl("jdbc:postgresql://localhost:5433/postgres");
 		dataSource.setUsername("postgres");
-		dataSource.setPassword("321321");
+		// change the password here
+		dataSource.setPassword("yourpassword");
 		return dataSource;
 	}
 
